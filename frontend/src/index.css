@@ -575,6 +575,136 @@ code {
   display: block;
 }
 
+/* ===== DEMO LOADER ===== */
+.demo-loader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  position: relative;
+}
+
+.demo-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.demo-trigger-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+}
+
+.demo-chevron {
+  font-size: 9px;
+  transition: transform 0.2s ease;
+}
+
+.demo-chevron.open {
+  transform: rotate(180deg);
+}
+
+.demo-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  min-width: 280px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.demo-dropdown-header {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #334155;
+}
+
+.demo-option {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  border-bottom: 1px solid #1e293b;
+}
+
+.demo-option:hover {
+  background: #334155;
+}
+
+.demo-option.active {
+  background: rgba(99, 102, 241, 0.15);
+  border-left: 3px solid #6366f1;
+}
+
+.demo-option-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 2px;
+}
+
+.demo-option-desc {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.demo-divider {
+  height: 1px;
+  background: #334155;
+  margin: 4px 0;
+}
+
+.demo-clear .demo-option-label {
+  color: #f87171;
+}
+
+.demo-clear:hover {
+  background: rgba(248, 113, 113, 0.1);
+}
+
+.demo-badge {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #a5b4fc;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Make toolbar layout flex to accommodate demo loader */
+.pipeline-toolbar {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.toolbar-nodes {
+  flex: 1;
+}
+
 /* ===== KEYBOARD SHORTCUTS HINT ===== */
 .shortcuts-hint {
   position: fixed;

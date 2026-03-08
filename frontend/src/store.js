@@ -7,10 +7,11 @@ import {
     applyEdgeChanges,
     MarkerType,
   } from 'reactflow';
+import { DEFAULT_DEMO } from './demos';
 
 export const useStore = create((set, get) => ({
-    nodes: [],
-    edges: [],
+    nodes: DEFAULT_DEMO.nodes,
+    edges: DEFAULT_DEMO.edges,
     getNodeID: (type) => {
         const newIDs = {...get().nodeIDs};
         if (newIDs[type] === undefined) {
@@ -50,5 +51,11 @@ export const useStore = create((set, get) => ({
           return node;
         }),
       });
+    },
+    loadDemo: (demo) => {
+      set({ nodes: demo.nodes, edges: demo.edges, nodeIDs: {} });
+    },
+    clearCanvas: () => {
+      set({ nodes: [], edges: [], nodeIDs: {} });
     },
   }));

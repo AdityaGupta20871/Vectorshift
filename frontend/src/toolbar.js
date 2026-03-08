@@ -1,6 +1,7 @@
 // toolbar.js
 
 import { DraggableNode } from './draggableNode';
+import { DemoLoader } from './demoLoader';
 
 export const PipelineToolbar = () => {
 
@@ -20,6 +21,7 @@ export const PipelineToolbar = () => {
                 <DraggableNode type='note' label='Note' icon='📌' />
                 <DraggableNode type='image' label='Image' icon='🖼️' />
             </div>
+            <DemoLoader />
         </div>
     );
 };
