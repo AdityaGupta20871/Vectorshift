@@ -9,3 +9,5 @@ export { MathNode } from './mathNode';
 export { ConditionNode } from './conditionNode';
 export { TimerNode } from './timerNode';
 export { FilterNode } from './filterNode';
+export { NoteNode } from './noteNode';
+export { ImageNode } from './imageNode';

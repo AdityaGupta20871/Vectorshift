@@ -15,7 +15,9 @@ import {
   MathNode,
   ConditionNode,
   TimerNode,
-  FilterNode
+  FilterNode,
+  NoteNode,
+  ImageNode
 } from './nodes';
 
 import 'reactflow/dist/style.css';
@@ -32,6 +34,8 @@ const nodeTypes = {
   condition: ConditionNode,
   timer: TimerNode,
   filter: FilterNode,
+  note: NoteNode,
+  image: ImageNode,
 };
 
 const selector = (state) => ({

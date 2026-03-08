@@ -17,6 +17,8 @@ export const PipelineToolbar = () => {
                 <DraggableNode type='condition' label='Condition' icon='🔀' />
                 <DraggableNode type='timer' label='Timer' icon='⏱️' />
                 <DraggableNode type='filter' label='Filter' icon='🔍' />
+                <DraggableNode type='note' label='Note' icon='📌' />
+                <DraggableNode type='image' label='Image' icon='🖼️' />
             </div>
         </div>
     );

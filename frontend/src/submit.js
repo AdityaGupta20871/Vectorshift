@@ -9,6 +9,11 @@ const selector = (state) => ({
     edges: state.edges,
 });
 
+// API URL - change this after deploying backend
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://your-backend-url.up.railway.app/pipelines/parse'  // Update after deploying
+  : 'http://localhost:8000/pipelines/parse';
+
 // Alert Modal Component
 const AlertModal = ({ data, onClose }) => {
     if (!data) return null;
@@ -52,7 +57,7 @@ export const SubmitButton = () => {
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const response = await fetch('http://localhost:8000/pipelines/parse', {
+            const response = await fetch(API_URL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
