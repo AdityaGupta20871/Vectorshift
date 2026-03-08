@@ -1,7 +1,7 @@
 // imageNode.js - Image/Media Node (Extra Feature)
 
 import { useState } from 'react';
-import { BaseNode, NodeField, NodeInput, NodeSelect } from './BaseNode';
+import { BaseNode, NodeField, NodeInput } from './BaseNode';
 
 export const ImageNode = ({ id, data }) => {
   const [imageUrl, setImageUrl] = useState(data?.imageUrl || '');

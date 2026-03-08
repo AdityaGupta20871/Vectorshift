@@ -1,7 +1,6 @@
 // noteNode.js - Sticky Note Node (Extra Feature)
 
 import { useState } from 'react';
-import { BaseNode, NodeField, NodeTextarea } from './BaseNode';
 
 export const NoteNode = ({ id, data }) => {
   const [note, setNote] = useState(data?.note || 'Add your notes here...');
