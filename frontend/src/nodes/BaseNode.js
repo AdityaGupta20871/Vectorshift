@@ -1,56 +1,50 @@
 // BaseNode.js - Abstract node component for reusable node creation
 
 import { Handle, Position } from 'reactflow';
-
-const handleStyles = {
-  width: '12px',
-  height: '12px',
-  borderRadius: '50%',
-  border: '2px solid #fff',
-};
+import { X } from 'lucide-react';
+import { useStore } from '../store';
 
 export const BaseNode = ({ 
   id, 
   title, 
-  icon,
+  Icon,
   children, 
   inputs = [], 
   outputs = [],
-  style = {},
   className = '',
-  minWidth = 220,
-  minHeight = 'auto',
+  minWidth = 200,
 }) => {
-  const totalInputs = inputs.length;
-  const totalOutputs = outputs.length;
+  const removeNode = useStore((state) => state.removeNode);
 
   return (
-    <div 
-      className={`base-node ${className}`}
-      style={{ 
-        minWidth, 
-        minHeight,
-        ...style 
-      }}
-    >
-      {/* Input Handles */}
+    <div className={`base-node ${className}`} style={{ minWidth }}>
+      {/* Close button */}
+      <button className="node-close-btn" onClick={() => removeNode(id)}>
+        <X size={14} />
+      </button>
+
+      {/* Input Handles with Labels */}
       {inputs.map((input, index) => (
-        <Handle
-          key={`${id}-${input.id}`}
-          type="target"
-          position={Position.Left}
-          id={`${id}-${input.id}`}
+        <div 
+          key={`${id}-${input.id}-wrapper`}
+          className="handle-wrapper handle-left"
           style={{
-            ...handleStyles,
-            top: totalInputs === 1 ? '50%' : `${((index + 1) / (totalInputs + 1)) * 100}%`,
-            background: input.color || '#6366f1',
+            top: inputs.length === 1 ? '50%' : `${((index + 1) / (inputs.length + 1)) * 100}%`,
           }}
-        />
+        >
+          <span className="handle-label">{input.label || input.id}</span>
+          <Handle
+            type="target"
+            position={Position.Left}
+            id={`${id}-${input.id}`}
+            className="custom-handle"
+          />
+        </div>
       ))}
 
       {/* Node Header */}
       <div className="node-header">
-        {icon && <span className="node-icon">{icon}</span>}
+        {Icon && <Icon size={16} className="node-icon" />}
         <span className="node-title">{title}</span>
       </div>
 
@@ -59,19 +53,23 @@ export const BaseNode = ({
         {children}
       </div>
 
-      {/* Output Handles */}
+      {/* Output Handles with Labels */}
       {outputs.map((output, index) => (
-        <Handle
-          key={`${id}-${output.id}`}
-          type="source"
-          position={Position.Right}
-          id={`${id}-${output.id}`}
+        <div 
+          key={`${id}-${output.id}-wrapper`}
+          className="handle-wrapper handle-right"
           style={{
-            ...handleStyles,
-            top: totalOutputs === 1 ? '50%' : `${((index + 1) / (totalOutputs + 1)) * 100}%`,
-            background: output.color || '#22c55e',
+            top: outputs.length === 1 ? '50%' : `${((index + 1) / (outputs.length + 1)) * 100}%`,
           }}
-        />
+        >
+          <span className="handle-label">{output.label || output.id}</span>
+          <Handle
+            type="source"
+            position={Position.Right}
+            id={`${id}-${output.id}`}
+            className="custom-handle"
+          />
+        </div>
       ))}
     </div>
   );
@@ -80,7 +78,7 @@ export const BaseNode = ({
 // Field components for consistent styling
 export const NodeField = ({ label, children }) => (
   <div className="node-field">
-    <label className="node-field-label">{label}</label>
+    {label && <label className="node-field-label">{label}</label>}
     {children}
   </div>
 );

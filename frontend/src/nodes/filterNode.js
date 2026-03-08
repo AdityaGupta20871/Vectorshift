@@ -1,6 +1,7 @@
 // filterNode.js - Data Filter Node
 
 import { useState } from 'react';
+import { Filter } from 'lucide-react';
 import { BaseNode, NodeField, NodeInput, NodeSelect } from './BaseNode';
 
 export const FilterNode = ({ id, data }) => {
@@ -10,13 +11,13 @@ export const FilterNode = ({ id, data }) => {
   return (
     <BaseNode
       id={id}
-      title="Filter"
-      icon="🔍"
+      title="Filter Node"
+      Icon={Filter}
       className="filter-node"
-      inputs={[{ id: 'data', color: '#6366f1' }]}
+      inputs={[{ id: 'data', label: 'Data' }]}
       outputs={[
-        { id: 'matched', color: '#22c55e' },
-        { id: 'unmatched', color: '#f59e0b' },
+        { id: 'matched', label: 'Matched' },
+        { id: 'unmatched', label: 'Unmatched' },
       ]}
     >
       <NodeField label="Filter Type">

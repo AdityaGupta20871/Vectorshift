@@ -1,23 +1,23 @@
 // llmNode.js
 
+import { MessageSquare } from 'lucide-react';
 import { BaseNode } from './BaseNode';
 
-export const LLMNode = ({ id, data }) => {
+export const LLMNode = ({ id }) => {
   return (
     <BaseNode
       id={id}
-      title="LLM"
-      icon="🤖"
+      title="LLM Node"
+      Icon={MessageSquare}
       className="llm-node"
       inputs={[
-        { id: 'system', color: '#f59e0b' },
-        { id: 'prompt', color: '#6366f1' },
+        { id: 'system', label: 'System' },
+        { id: 'prompt', label: 'Prompt' },
       ]}
-      outputs={[{ id: 'response', color: '#22c55e' }]}
+      outputs={[{ id: 'response', label: 'Response' }]}
     >
       <div className="llm-info">
-        <div className="llm-badge">GPT-4</div>
-        <p className="llm-description">Large Language Model for text generation</p>
+        <p className="llm-description">Large Language Model</p>
       </div>
     </BaseNode>
   );

@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { Handle, Position } from 'reactflow';
+import { FileText, X } from 'lucide-react';
+import { useStore } from '../store';
 
 // Extract valid JavaScript variable names from double curly brackets
 const extractVariables = (text) => {
@@ -17,8 +19,9 @@ const extractVariables = (text) => {
 };
 
 export const TextNode = ({ id, data }) => {
-  const [currText, setCurrText] = useState(data?.text || '{{input}}');
+  const [currText, setCurrText] = useState(data?.text || '');
   const textareaRef = useRef(null);
+  const removeNode = useStore((state) => state.removeNode);
 
   // Extract variables from text
   const variables = useMemo(() => extractVariables(currText), [currText]);
@@ -36,89 +39,73 @@ export const TextNode = ({ id, data }) => {
   };
 
   // Calculate dynamic width based on content
-  const minWidth = Math.max(220, Math.min(400, currText.length * 7));
+  const minWidth = Math.max(180, Math.min(300, currText.length * 6));
 
   return (
     <div 
       className="base-node text-node"
-      style={{ 
-        minWidth: `${minWidth}px`,
-        minHeight: 'auto',
-      }}
+      style={{ minWidth: `${minWidth}px` }}
     >
-      {/* Dynamic Variable Handles */}
+      {/* Close button */}
+      <button className="node-close-btn" onClick={() => removeNode(id)}>
+        <X size={14} />
+      </button>
+
+      {/* Dynamic Variable Handles with Labels */}
       {variables.map((variable, index) => (
-        <Handle
-          key={`${id}-${variable}`}
-          type="target"
-          position={Position.Left}
-          id={`${id}-${variable}`}
+        <div 
+          key={`${id}-${variable}-wrapper`}
+          className="handle-wrapper handle-left"
           style={{
             top: variables.length === 1 
               ? '50%' 
               : `${((index + 1) / (variables.length + 1)) * 100}%`,
-            width: '12px',
-            height: '12px',
-            borderRadius: '50%',
-            border: '2px solid #fff',
-            background: '#6366f1',
           }}
-        />
+        >
+          <span className="handle-label">{variable}</span>
+          <Handle
+            type="target"
+            position={Position.Left}
+            id={`${id}-${variable}`}
+            className="custom-handle"
+          />
+        </div>
       ))}
 
       {/* Node Header */}
       <div className="node-header">
-        <span className="node-icon">📝</span>
-        <span className="node-title">Text</span>
+        <FileText size={16} className="node-icon" />
+        <span className="node-title">Text Node</span>
       </div>
-
-      {/* Variable Labels */}
-      {variables.length > 0 && (
-        <div className="variable-labels">
-          {variables.map((variable, index) => (
-            <div 
-              key={variable} 
-              className="variable-label"
-              style={{
-                top: variables.length === 1 
-                  ? '50%' 
-                  : `${((index + 1) / (variables.length + 1)) * 100}%`,
-              }}
-            >
-              {variable}
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* Node Content */}
       <div className="node-content">
         <div className="node-field">
-          <label className="node-field-label">Text</label>
+          <label className="node-field-label">TEXT</label>
           <textarea
             ref={textareaRef}
             className="node-textarea"
             value={currText}
             onChange={handleTextChange}
-            placeholder="Enter text with {{variables}}..."
-            rows={2}
+            placeholder="20"
+            rows={1}
           />
         </div>
       </div>
 
-      {/* Output Handle */}
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-output`}
-        style={{
-          width: '12px',
-          height: '12px',
-          borderRadius: '50%',
-          border: '2px solid #fff',
-          background: '#22c55e',
-        }}
-      />
+      {/* Output Handle with Label */}
+      <div 
+        className="handle-wrapper handle-right"
+        style={{ top: '50%' }}
+      >
+        <span className="handle-label">Output</span>
+        <Handle
+          type="source"
+          position={Position.Right}
+          id={`${id}-output`}
+          className="custom-handle"
+        />
+      </div>
     </div>
   );
 }

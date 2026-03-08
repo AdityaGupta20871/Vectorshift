@@ -11,13 +11,11 @@ import {
   OutputNode, 
   LLMNode, 
   TextNode,
-  ApiNode,
-  MathNode,
-  ConditionNode,
-  TimerNode,
   FilterNode,
-  NoteNode,
-  ImageNode
+  AggregateNode,
+  DebugNode,
+  TransformNode,
+  ApiNode
 } from './nodes';
 
 import 'reactflow/dist/style.css';
@@ -29,13 +27,11 @@ const nodeTypes = {
   customOutput: OutputNode,
   llm: LLMNode,
   text: TextNode,
-  api: ApiNode,
-  math: MathNode,
-  condition: ConditionNode,
-  timer: TimerNode,
+  aggregate: AggregateNode,
+  debug: DebugNode,
   filter: FilterNode,
-  note: NoteNode,
-  image: ImageNode,
+  api: ApiNode,
+  transform: TransformNode,
 };
 
 const selector = (state) => ({
@@ -106,7 +102,7 @@ export const PipelineUI = () => {
 
     return (
         <>
-        <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
+        <div ref={reactFlowWrapper} style={{width: '100vw', height: 'calc(100vh - 68px)'}}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}

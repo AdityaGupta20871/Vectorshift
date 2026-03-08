@@ -1,6 +1,7 @@
 // inputNode.js
 
 import { useState } from 'react';
+import { ArrowRightFromLine } from 'lucide-react';
 import { BaseNode, NodeField, NodeInput, NodeSelect } from './BaseNode';
 
 export const InputNode = ({ id, data }) => {
@@ -10,19 +11,19 @@ export const InputNode = ({ id, data }) => {
   return (
     <BaseNode
       id={id}
-      title="Input"
-      icon="📥"
+      title="Input Node"
+      Icon={ArrowRightFromLine}
       className="input-node"
-      outputs={[{ id: 'value', color: '#22c55e' }]}
+      outputs={[{ id: 'output', label: 'Output' }]}
     >
-      <NodeField label="Name">
+      <NodeField>
         <NodeInput 
           value={currName} 
           onChange={(e) => setCurrName(e.target.value)} 
-          placeholder="Enter name..."
+          placeholder="input_1"
         />
       </NodeField>
-      <NodeField label="Type">
+      <NodeField>
         <NodeSelect 
           value={inputType} 
           onChange={(e) => setInputType(e.target.value)}

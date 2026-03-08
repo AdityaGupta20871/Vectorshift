@@ -1,6 +1,7 @@
 // apiNode.js - API Request Node
 
 import { useState } from 'react';
+import { Globe } from 'lucide-react';
 import { BaseNode, NodeField, NodeInput, NodeSelect } from './BaseNode';
 
 export const ApiNode = ({ id, data }) => {
@@ -10,14 +11,14 @@ export const ApiNode = ({ id, data }) => {
   return (
     <BaseNode
       id={id}
-      title="API Request"
-      icon="🌐"
+      title="Http Node"
+      Icon={Globe}
       className="api-node"
       inputs={[
-        { id: 'body', color: '#6366f1' },
-        { id: 'headers', color: '#f59e0b' },
+        { id: 'body', label: 'Body' },
+        { id: 'headers', label: 'Headers' },
       ]}
-      outputs={[{ id: 'response', color: '#22c55e' }]}
+      outputs={[{ id: 'response', label: 'Response' }]}
     >
       <NodeField label="URL">
         <NodeInput 
