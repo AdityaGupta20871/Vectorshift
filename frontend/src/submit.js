@@ -112,46 +112,7 @@ const AlertModal = ({ data, onClose }) => {
     );
 };
 
-export const SubmitButton = () => {
-    const { nodes, edges } = useStore(selector, shallow);
-    const [loading, setLoading] = useState(false);
-    const [alertData, setAlertData] = useState(null);
-
-    const handleSubmit = async () => {
-        setLoading(true);
-        try {
-            const response = await fetch(`${API_URL}/pipelines/parse`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ nodes, edges }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const data = await response.json();
-            // Add pipeline validity check
-            data.is_pipeline_valid = isPipelineValid(nodes, edges);
-            setAlertData(data);
-        } catch (error) {
-            console.error('Error submitting pipeline:', error);
-            alert('Error connecting to server. Make sure the backend is running.');
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <>
-            <AlertModal data={alertData} onClose={() => setAlertData(null)} />
-        </>
-    );
-}
-
-// Export run button handler for toolbar
+// Run button handler for toolbar
 export const useSubmitPipeline = () => {
     const { nodes, edges } = useStore(selector, shallow);
     const [loading, setLoading] = useState(false);
