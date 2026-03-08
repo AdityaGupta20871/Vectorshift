@@ -10,7 +10,7 @@ const selector = (state) => ({
 });
 
 // Use environment variable for API URL, fallback to localhost for development
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_URL = (process.env.REACT_APP_API_URL || 'http://localhost:8000').replace(/\/$/, '');
 
 // Alert Modal Component
 const AlertModal = ({ data, onClose }) => {

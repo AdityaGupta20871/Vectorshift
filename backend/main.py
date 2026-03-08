@@ -9,13 +9,8 @@ app = FastAPI()
 # Enable CORS for frontend communication
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://vectorshift-azure.vercel.app",
-        "https://vectorshift-git-main-adityagupta20871s-projects.vercel.app",
-        "https://vectorshift-li0bm3kgu-adityagupta20871s-projects.vercel.app",
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
