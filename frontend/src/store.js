@@ -52,10 +52,4 @@ export const useStore = create((set, get) => ({
         }),
       });
     },
-    loadDemo: (demo) => {
-      set({ nodes: demo.nodes, edges: demo.edges, nodeIDs: {} });
-    },
-    clearCanvas: () => {
-      set({ nodes: [], edges: [], nodeIDs: {} });
-    },
   }));

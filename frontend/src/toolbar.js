@@ -1,7 +1,7 @@
 // toolbar.js
 
 import { DraggableNode } from './draggableNode';
-import { DemoLoader } from './demoLoader';
+import { ThemeToggle } from './themeToggle';
 
 export const PipelineToolbar = () => {
 
@@ -13,15 +13,8 @@ export const PipelineToolbar = () => {
                 <DraggableNode type='customOutput' label='Output' icon='📤' />
                 <DraggableNode type='llm' label='LLM' icon='🤖' />
                 <DraggableNode type='text' label='Text' icon='📝' />
-                <DraggableNode type='api' label='API' icon='🌐' />
-                <DraggableNode type='math' label='Math' icon='🔢' />
-                <DraggableNode type='condition' label='Condition' icon='🔀' />
-                <DraggableNode type='timer' label='Timer' icon='⏱️' />
-                <DraggableNode type='filter' label='Filter' icon='🔍' />
-                <DraggableNode type='note' label='Note' icon='📌' />
-                <DraggableNode type='image' label='Image' icon='🖼️' />
             </div>
-            <DemoLoader />
+            <ThemeToggle />
         </div>
     );
 };
