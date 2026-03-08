@@ -14,7 +14,9 @@ import {
     Filter, 
     Globe, 
     Sparkles,
-    Play
+    Play,
+    StickyNote,
+    Image
 } from 'lucide-react';
 
 const selector = (state) => ({
@@ -44,6 +46,8 @@ export const PipelineToolbar = () => {
                 <DraggableNode type='filter' label='Filter' Icon={Filter} />
                 <DraggableNode type='api' label='Http' Icon={Globe} />
                 <DraggableNode type='transform' label='Transform' Icon={Sparkles} />
+                <DraggableNode type='note' label='Note' Icon={StickyNote} />
+                <DraggableNode type='image' label='Image' Icon={Image} />
             </div>
             <div className="toolbar-controls">
                 <div className="toggle-group">

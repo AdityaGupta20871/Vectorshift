@@ -1,6 +1,7 @@
 // imageNode.js - Image/Media Node (Extra Feature)
 
 import { useState } from 'react';
+import { Image } from 'lucide-react';
 import { BaseNode, NodeField, NodeInput } from './BaseNode';
 
 export const ImageNode = ({ id, data }) => {
@@ -10,11 +11,11 @@ export const ImageNode = ({ id, data }) => {
   return (
     <BaseNode
       id={id}
-      title="Image"
-      icon="🖼️"
+      title="Image Node"
+      Icon={Image}
       className="image-node"
-      inputs={[{ id: 'url', color: '#6366f1' }]}
-      outputs={[{ id: 'image', color: '#22c55e' }]}
+      inputs={[{ id: 'url', label: 'URL' }]}
+      outputs={[{ id: 'image', label: 'Image' }]}
     >
       <NodeField label="Image URL">
         <NodeInput 

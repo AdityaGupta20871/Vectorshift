@@ -295,45 +295,44 @@ body {
   align-items: center;
   transform: translateY(-50%);
   z-index: 5;
+  pointer-events: none;
 }
 
 .handle-wrapper.handle-left {
-  left: -8px;
+  left: 0;
   flex-direction: row-reverse;
+  transform: translate(-100%, -50%);
 }
 
 .handle-wrapper.handle-right {
-  right: -8px;
+  right: 0;
+  transform: translate(100%, -50%);
 }
 
 .handle-label {
   font-size: 10px;
-  color: #64748b;
-  background: white;
-  padding: 2px 6px;
-  border-radius: 4px;
+  color: #94a3b8;
   white-space: nowrap;
   font-weight: 500;
-}
-
-.handle-wrapper.handle-left .handle-label {
-  margin-right: 8px;
-}
-
-.handle-wrapper.handle-right .handle-label {
-  margin-left: 8px;
+  padding: 0 6px;
 }
 
 .custom-handle {
   width: 10px !important;
   height: 10px !important;
-  background: #6366f1 !important;
-  border: 2px solid white !important;
+  background: #e2e8f0 !important;
+  border: 2px solid #6366f1 !important;
   border-radius: 50% !important;
+  position: relative !important;
+  pointer-events: all;
+  transform: none !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
 }
 
-.react-flow__handle-right {
-  background: #22c55e !important;
+.handle-wrapper.handle-right .custom-handle {
+  border-color: #22c55e !important;
 }
 
 /* ===== LLM NODE ===== */
@@ -425,6 +424,73 @@ body {
 
 .api-node .node-icon {
   color: #0d9488;
+}
+
+/* ===== IMAGE NODE ===== */
+.image-node .node-header {
+  background: linear-gradient(135deg, #fff1f2, #ffe4e6);
+}
+
+.image-node .node-icon {
+  color: #e11d48;
+}
+
+.image-preview {
+  margin-top: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.image-preview img {
+  width: 100%;
+  max-height: 120px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== NOTE NODE ===== */
+.note-node {
+  min-width: 180px;
+}
+
+.note-node .node-header {
+  border-radius: 12px 12px 0 0;
+}
+
+.note-textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
+  resize: none;
+  font-size: 13px;
+  color: #374151;
+  font-family: inherit;
+  outline: none;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.color-picker {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.color-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.color-btn.active,
+.color-btn:hover {
+  border-color: #374151;
+  transform: scale(1.15);
 }
 
 /* ===== MODAL STYLES ===== */

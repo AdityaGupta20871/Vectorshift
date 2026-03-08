@@ -9,3 +9,5 @@ export { AggregateNode } from './aggregateNode';
 export { DebugNode } from './debugNode';
 export { TransformNode } from './transformNode';
 export { ApiNode } from './apiNode';
+export { NoteNode } from './noteNode';
+export { ImageNode } from './imageNode';

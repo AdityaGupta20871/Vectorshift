@@ -15,7 +15,9 @@ import {
   AggregateNode,
   DebugNode,
   TransformNode,
-  ApiNode
+  ApiNode,
+  NoteNode,
+  ImageNode
 } from './nodes';
 
 import 'reactflow/dist/style.css';
@@ -32,6 +34,8 @@ const nodeTypes = {
   filter: FilterNode,
   api: ApiNode,
   transform: TransformNode,
+  note: NoteNode,
+  image: ImageNode,
 };
 
 const selector = (state) => ({

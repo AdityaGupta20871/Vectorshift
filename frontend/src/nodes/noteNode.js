@@ -1,8 +1,11 @@
 // noteNode.js - Sticky Note Node (Extra Feature)
 
 import { useState } from 'react';
+import { X } from 'lucide-react';
+import { useStore } from '../store';
 
 export const NoteNode = ({ id, data }) => {
+  const removeNode = useStore((state) => state.removeNode);
   const [note, setNote] = useState(data?.note || 'Add your notes here...');
   const [color, setColor] = useState(data?.color || '#fef08a');
 
@@ -18,13 +21,15 @@ export const NoteNode = ({ id, data }) => {
     <div 
       className="base-node note-node"
       style={{ 
-        background: `linear-gradient(145deg, ${color}, ${color}dd)`,
-        borderColor: color,
+        background: color,
+        borderColor: `${color}aa`,
       }}
     >
-      <div className="node-header" style={{ background: 'rgba(0,0,0,0.2)' }}>
-        <span className="node-icon">📌</span>
-        <span className="node-title" style={{ color: '#1e293b' }}>Note</span>
+      <button className="node-close-btn" onClick={() => removeNode(id)}>
+        <X size={14} />
+      </button>
+      <div className="node-header" style={{ background: 'rgba(0,0,0,0.08)', borderColor: `${color}aa` }}>
+        <span className="node-title" style={{ color: '#1e293b' }}>📌 Note</span>
       </div>
       <div className="node-content">
         <div className="color-picker">
